@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Home | PG Finder{% endblock %}
+{% block content %}
+<!-- Banner with search bar -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <h1 class="display-4 fw-bold">Find the Best PGs, Flats, Villas & More</h1>
+                <p class="lead">For students and working professionals. Discover, compare, and connect instantly.</p>
+                <form class="row g-2 mt-4" method="get" action="/listings">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="location" placeholder="Enter location">
+                    </div>
+                    <div class="col-md-5">
+                        <select class="form-select" name="type">
+                            <option value="">PG Type</option>
+                            <option value="PG">PG</option>
+                            <option value="Flat">Flat</option>
+                            <option value="Villa">Villa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-warning w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5 d-none d-md-block">
+                <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" class="img-fluid rounded shadow" alt="PG Banner">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Cities / Popular PGs -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="mb-4 text-center">Featured Cities</h2>
+        {% set city_images = {
+            'Delhi': 'https://images.pexels.com/photos/356830/pexels-photo-356830.jpeg',
+            'Mumbai': 'https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg',
+            'Bangalore': url_for('static', filename='images/bangalore.jpg'),
+            'Pune': 'https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg',
+            'Hyderabad': 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg',
+            'Chennai': url_for('static', filename='images/chennai.jpg')
+        } %}
+        <div class="row g-4">
+            {% for city in ['Delhi', 'Mumbai', 'Bangalore', 'Pune', 'Hyderabad', 'Chennai'] %}
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ city_images[city] }}" class="card-img-top" alt="{{ city }}">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">{{ city }}</h6>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Why Choose Us?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <div class="mb-3"><i class="bi bi-search fs-1 text-primary"></i></div>
+                    <h5>Verified Listings</h5>
+                    <p>All PGs, flats, and services are verified for your safety and comfort.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <div class="mb-3"><i class="bi bi-lightning-charge fs-1 text-warning"></i></div>
+                    <h5>Instant Connect</h5>
+                    <p>Contact owners and service providers directly, no middlemen.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <div class="mb-3"><i class="bi bi-phone fs-1 text-success"></i></div>
+                    <h5>Mobile Friendly</h5>
+                    <p>Access the platform anytime, anywhere on your mobile device.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

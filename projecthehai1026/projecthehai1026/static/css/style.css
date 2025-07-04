@@ -1,0 +1,44 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand {
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+}
+.card {
+    border-radius: 1rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    transform: translateY(-4px) scale(1.01);
+}
+.card img {
+    object-fit: cover;
+    height: 200px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+footer {
+    font-size: 1rem;
+    background: #222 !important;
+    color: #fff;
+    border-top: none !important;
+}
+.footer a {
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.footer a:hover {
+    opacity: 1;
+    color: #ffc107;
+}
+.btn {
+    border-radius: 0.5rem;
+}
+.badge {
+    font-size: 0.95em;
+    padding: 0.5em 0.7em;
+    border-radius: 0.5em;
+} 

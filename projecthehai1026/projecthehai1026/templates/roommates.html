@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Roommate Finder | PG Finder{% endblock %}
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="mb-4 text-center">Find a Roommate</h2>
+        <form class="row g-2 mb-4 justify-content-center" method="get" action="/roommates">
+            <div class="col-md-3">
+                <input type="text" class="form-control" name="location" placeholder="Location" value="{{ request.args.get('location', '') }}">
+            </div>
+            <div class="col-md-3">
+                <input type="number" class="form-control" name="budget" placeholder="Max Budget" value="{{ request.args.get('budget', '') }}">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" name="gender">
+                    <option value="">Gender</option>
+                    <option value="Male" {% if request.args.get('gender') == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if request.args.get('gender') == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if request.args.get('gender') == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100"><i class="bi bi-search"></i> Search</button>
+            </div>
+        </form>
+        <div class="row g-4">
+            {% for r in roommates %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ r.image_url }}" class="card-img-top" alt="{{ r.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ r.name }}
+                            {% if r.gender == 'Male' %}<i class="bi bi-gender-male text-primary"></i>{% endif %}
+                            {% if r.gender == 'Female' %}<i class="bi bi-gender-female text-danger"></i>{% endif %}
+                            {% if r.gender == 'Other' %}<i class="bi bi-gender-ambiguous text-success"></i>{% endif %}
+                        </h5>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-danger"></i> <strong>Location:</strong> {{ r.location }}</p>
+                        <p class="card-text mb-1"><i class="bi bi-currency-rupee"></i> <strong>Budget:</strong> ₹{{ r.budget }}</p>
+                        <p class="card-text mb-2"><i class="bi bi-person-vcard"></i> <strong>About:</strong> {{ r.about }}</p>
+                        <a href="#" class="btn btn-outline-success w-100"><i class="bi bi-chat-dots"></i> Start Chat</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %} 
